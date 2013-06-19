@@ -102,8 +102,8 @@ function getDealInfo(dealIDs){
                         };
 
                         asin = dealInfo.parentAsin ? dealInfo.parentAsin : asins[0].asin;
-                        redeemInfo.timeoutHandler = secheduleOrder(dealID, asin, msToStart);
-//                        redeemInfo.timeoutHandler = secheduleOrder(dealID, asin, 2000);
+//                        redeemInfo.timeoutHandler = secheduleOrder(dealID, asin, msToStart);
+                        redeemInfo.timeoutHandler = secheduleOrder(dealID, asin, 2000);
                         redeemInfo.title = dealInfo.detail.title ? dealInfo.detail.title : dealInfo.teaser.teaser;
                         redeemInfo.imageUrl = dealInfo.detail.imageAsin ? dealInfo.detail.imageAsin : 'images/default.gif';
                         redeemInfo.hasDetail = true;
@@ -123,10 +123,10 @@ function showRedeemQueueInfo(){
     chrome.runtime.sendMessage({event: 'show_redeem_queue_info'});
 }
 
-function removeRedeemNode(dealID){
-    chrome.runtime.sendMessage({event: 'remove_dedeem_node', dealID: dealID});
-    clearTimeout(redeemQueueInfo[dealID].timeoutHandler);
-    delete redeemQueueInfo[dealID];
+function updateRedeemInfo(dealID){
+    chrome.runtime.sendMessage({event: 'update_dedeem_info', dealID: dealID});
+//    clearTimeout(redeemQueueInfo[dealID].timeoutHandler);
+//    delete redeemQueueInfo[dealID];
 }
 
 function scheduleGetInfo(dealID, msToStart){
@@ -153,10 +153,11 @@ function secheduleOrder(dealID, asin, toStartTime){
             url: url
         };
         jQuery.ajax(postData).done(function(data){
-            redeemQueueInfo[dealID].status = data.redeemed;
+            data = JSON.parse(data);
+            redeemQueueInfo[dealID].redeemed = data.redeemed;
             redeemQueueInfo[dealID].requested = true;
-            redeemQueueInfo[dealID].orderTimeOffset = data.status.msToStart;
-            removeRedeemNode(dealID);
+            redeemQueueInfo[dealID].orderTimeOffset = data.deal.status.msToStart;
+            updateRedeemInfo(dealID);
         });
         setOrderTimer(postData);
     }, toStartTime - timeAhead);
@@ -166,7 +167,7 @@ function secheduleOrder(dealID, asin, toStartTime){
 function setOrderTimer(postData){
     var handler = setInterval(function(){
         jQuery.ajax(postData).done(function(data){
-            redeemQueueInfo[dealID].status = data.redeemed | redeemQueueInfo[dealID].status;
+            redeemQueueInfo[data.deal.dealID].redeemed = data.redeemed | redeemQueueInfo[data.deal.dealID].redeemed;
         });
     }, 50);
 

@@ -24,7 +24,7 @@ body{
     font-size: 13px;
 }
 .redeem-line{
-    line-height: 25px;
+    line-height: 30px;
 }
 .redeem-btn{
     width: 78px;
@@ -36,7 +36,6 @@ body{
     height: 460px;
     overflow-x: hidden;
     overflow-y: auto;
-    margin-bottom: 10px;
 }
 
 .goods-name{
@@ -58,7 +57,9 @@ body{
 .image-holder .image-node{
     width: 72px;
     height: 72px;
+    background-color: #fff;
     border: #ddd solid 1px;
+    margin: 0 auto;
 }
 
 .image-holder .image-node .redeem-image{
@@ -66,30 +67,39 @@ body{
     max-height: 72px;
 }
 
+.redeem-detail{
+    font-size: 13px;
+}
+
 .redeem-title{
-    min-height: 50px;
+    min-height: 40px;
+    font-size: 14px;
+    font-weight: bold;
 }
 
 .redeem-cancel-line{
     line-height: 22px;
 }
 
-.cancel-redeem-btn{
+.remove-redeem-btn{
     float: right;
+    margin-right: 10px;
+    width: 70px;
 }
 
 hr{
     margin: 6px 0;
 }
-
+.redeem-status,
 .total-numer{
-    margin-right: 10px;
+    margin-right: 20px;
 }
-.set-time-offset{
-    font-size: 13px;
-    height: 20px;
-    line-height: 20px;
-    vertical-align: middle;
+
+.redeem-time-offset{
+    display: none;
+}
+.requested .redeem-time-offset{
+    display: inline;
 }
 .time-offset-input{
     width: 31px;

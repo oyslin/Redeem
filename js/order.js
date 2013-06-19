@@ -2,7 +2,6 @@
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
 	if(request.event == 'get_dealIDs'){
         var dealIDs = getdealIDs();
-//        sendResponse(dealIDs);
         chrome.runtime.sendMessage({event: 'get_dealID_success', dealIDs: dealIDs});
 	}
 });
