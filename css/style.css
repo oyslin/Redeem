@@ -1,0 +1,14 @@
+.notification{
+    width: 200px;
+    line-height: 20px;
+    font-size: 12px;
+    background-color: #ddd;
+    border-radius: 4px;
+    color: #555;
+    position: fixed;
+    padding: 4px 6px;
+    top: 10px;
+    border: 1px solid #444;
+    font-weight: bold;
+    z-index: 99;
+}

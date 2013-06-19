@@ -1,0 +1,110 @@
+body{
+    width: 500px;
+    min-height: 400px;
+    max-height: 580px;
+    background-color: #fafafa;
+    overflow: hidden;
+    padding: 5px 8px;
+}
+.order-header{
+    height: 50px;
+    margin-bottom: 5px;
+}
+.logo{
+    width: 280px;
+    height: 50px;
+}
+.header-redeem{
+    float: right;
+    width: 200px;
+    height: 50px;
+    text-align: right;
+}
+.amazon-cart{
+    font-size: 13px;
+}
+.redeem-line{
+    line-height: 25px;
+}
+.redeem-btn{
+    width: 78px;
+}
+
+.redeem-list{
+    margin-top: -10px;
+    width: 500px;
+    height: 460px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    margin-bottom: 10px;
+}
+
+.goods-name{
+    width: 320px;
+}
+
+.goods-operate{
+    vertical-align: middle;
+}
+
+.redeem-info{
+    min-height: 60px;
+}
+
+.image-holder{
+    text-align: center;
+}
+
+.image-holder .image-node{
+    width: 72px;
+    height: 72px;
+    border: #ddd solid 1px;
+}
+
+.image-holder .image-node .redeem-image{
+    max-width: 72px;
+    max-height: 72px;
+}
+
+.redeem-title{
+    min-height: 50px;
+}
+
+.redeem-cancel-line{
+    line-height: 22px;
+}
+
+.cancel-redeem-btn{
+    float: right;
+}
+
+hr{
+    margin: 6px 0;
+}
+
+.total-numer{
+    margin-right: 10px;
+}
+.set-time-offset{
+    font-size: 13px;
+    height: 20px;
+    line-height: 20px;
+    vertical-align: middle;
+}
+.time-offset-input{
+    width: 31px;
+    border: none;
+    text-align: right;
+}
+.cancel-all-btn{
+    margin-left: 10px;
+    display: none;
+}
+.hide-expired-btn{
+    margin-left: 10px;
+    display: none;
+}
+.remove-all-redeem-btn{
+    margin-left: 10px;
+    display: none;
+}

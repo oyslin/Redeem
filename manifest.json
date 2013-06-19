@@ -1,0 +1,33 @@
+{
+    "name": "Z秒杀",
+    "manifest_version": 2,
+    "version": "0.1",
+    "description": "亚马逊秒杀插件，帮助你快速秒杀商品",
+    "icons": {
+        "16": "images/order_16.png",
+        "48": "images/order_48.png",
+        "128": "images/order_128.png"
+    },
+    "background": {
+//        "scripts": ["background.html"],
+        "page": "background.html"
+    },
+    "content_scripts": [
+        {
+            "matches": ["http://www.amazon.cn/*"],
+            "js": ["js/order.js", "js/lib/jquery-1.10.1.min.js"],
+            "css": ["css/style.css"],
+            "run_at": "document_end"
+        }
+    ],
+    "permissions": [
+        "tabs", "cookies", "http://www.amazon.cn/*"
+    ],
+    "browser_action": {
+        "default_icon": {
+            "19": "images/order_16.png"
+        },
+        "default_title": "亚马逊秒杀插件",
+        "default_popup": "popup.html"
+    }
+}

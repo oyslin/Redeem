@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Z秒杀</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/popup.css">
+    <script type="text/javascript" src="js/lib/jquery-1.10.1.min.js"></script>
+    <script type="text/javascript" src="js/redeem.js"></script>
+</head>
+<body>
+    <div class="order-header">
+        <img src="images/logo.png" class="logo">
+        <div class="header-redeem">
+            <div class="amazon-cart">
+                <a href="http://www.amazon.cn/gp/cart/view.html/ref=gno_cart" target="_blank">亚马逊购物车</a>
+            </div>
+            <div class="redeem-line">
+                <button class="btn btn-primary btn-mini redeem-btn" type="button">加入秒杀</button>
+            </div>
+        </div>
+    </div>
+
+    <ul class="nav nav-tabs">
+        <li class="active">
+            <a href="#redeem-list">秒杀队列</a>
+        </li>
+    </ul>
+    <div class="container redeem-list"></div>
+    <span class="set-time-offset">
+        <label>设置秒杀时间提前量：</label>
+        <input type="text" title="请输入需要提前的时间量，单位毫秒，可以为负" value="400" class="time-offset-input">
+        <label>毫秒</label>
+        <button class="btn btn-primary btn-mini cancel-all-btn" type="button" title="取消所有未开始秒杀">全部取消</button>
+        <button class="btn btn-primary btn-mini hide-expired-btn" type="button" title="隐藏过期的秒杀">隐藏过期</button>
+        <button class="btn btn-primary btn-mini remove-all-redeem-btn" type="button" title="删除全部的秒杀">全部删除</button>
+    </span>
+</body>
+</html>
