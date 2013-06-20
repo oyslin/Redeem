@@ -95,10 +95,17 @@ hr{
     margin-right: 20px;
 }
 
+.redeem-success .redeem-status{
+    color: #4DBC47;
+}
+.redeem-failed .redeem-status{
+    color: #f00;
+}
+
 .redeem-time-offset{
     display: none;
 }
-.requested .redeem-time-offset{
+.redeem-requested .redeem-time-offset{
     display: inline;
 }
 .time-offset-input{

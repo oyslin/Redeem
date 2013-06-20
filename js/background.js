@@ -125,8 +125,6 @@ function showRedeemQueueInfo(){
 
 function updateRedeemInfo(dealID){
     chrome.runtime.sendMessage({event: 'update_dedeem_info', dealID: dealID});
-//    clearTimeout(redeemQueueInfo[dealID].timeoutHandler);
-//    delete redeemQueueInfo[dealID];
 }
 
 function scheduleGetInfo(dealID, msToStart){
@@ -174,4 +172,23 @@ function setOrderTimer(postData){
     setTimeout(function(){
         clearInterval(handler);
     }, 500);
+}
+
+function getSortedRedeemQueueInfo(){
+    var sortedRedeemQueueInfo = [], redeemInfo;
+    for(var dealID in redeemQueueInfo){
+        redeemInfo = redeemQueueInfo[dealID];
+        sortedRedeemQueueInfo.push(redeemInfo);
+    }
+    if(sortedRedeemQueueInfo.length > 0){
+//        alert(sortedRedeemQueueInfo.length);
+        sortedRedeemQueueInfo.sort(compareRedeemInfoFun);
+    }
+    return sortedRedeemQueueInfo;
+}
+
+function compareRedeemInfoFun(first, second){
+    var result;
+    result = first.startTime > second.startTime ? 1 : first.startTime == second.startTime ? 0 : -1;
+    return result;
 }

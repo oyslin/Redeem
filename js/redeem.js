@@ -27,14 +27,12 @@ jQuery(document).ready(function(){
 });
 
 function removeRedeemInfo(dealId){
-//    redeemQueueInfo = backgroundWindow.redeemQueueInfo;
     jQuery('[dealId="' + dealId + '"]').remove();
     backgroundWindow.clearTimeout(redeemQueueInfo[dealId].timeoutHandler);
     delete redeemQueueInfo[dealId];
 }
 
 function updateRedeemInfo(dealId){
-//    redeemQueueInfo = backgroundWindow.redeemQueueInfo;
     var dealInfoNode = jQuery('div[dealId="' + dealId + '"]');
     var redeemInfo = redeemQueueInfo[dealId];
     var status = redeemInfo.requested ? (redeemInfo.redeemed ? '秒杀成功' : '秒杀失败') : '未开始';
@@ -43,20 +41,16 @@ function updateRedeemInfo(dealId){
     jQuery('.redeem-status', dealInfoNode).text('状态：'+ status);
     jQuery('.remove-redeem-btn', dealInfoNode).text(removeBtnText);
     jQuery('.redeem-time-offset', dealInfoNode).text('误差：'+ redeemInfo.orderTimeOffset +'毫秒');
-//    jQuery('[dealId="' + dealId + '"]').remove();
-//    if(manually){
-//        backgroundWindow.clearTimeout(redeemQueueInfo[dealId].timeoutHandler);
-//        delete redeemQueueInfo[dealId];
-//    }
 }
 
 function showRedeemQueueInfo(){
-    var redeemInfo, redeemInfoHtml,
-        redeemList = jQuery('.redeem-list');
-    redeemQueueInfo = backgroundWindow.redeemQueueInfo;
-    for(var dealId in redeemQueueInfo){
+    var redeemInfo, redeemInfoHtml, dealId,
+        redeemList = jQuery('.redeem-list'),
+        sortedRedeemQueueInfo = backgroundWindow.getSortedRedeemQueueInfo()
+    for(var i = 0; i < sortedRedeemQueueInfo.length; i++){
+        redeemInfo = sortedRedeemQueueInfo[i];
+        dealId = redeemInfo.dealID;
         if(jQuery('[dealId="' + dealId + '"]', redeemList).length == 0){
-            redeemInfo = redeemQueueInfo[dealId];
             redeemInfoHtml = getSingleRedeemHtml(redeemInfo);
             redeemList.append(redeemInfoHtml);
         }
@@ -66,9 +60,10 @@ function showRedeemQueueInfo(){
 function getSingleRedeemHtml(redeemInfo){
     var startTime = getStartTime(redeemInfo.startTime);
     var status = redeemInfo.requested ? (redeemInfo.redeemed ? '秒杀成功' : '秒杀失败') : '未开始';
-    var requestClass = redeemInfo.requested ? "requested" : "";
+    var requestClass = redeemInfo.requested ? "redeem-requested" : "";
+    var statusClass = redeemInfo.requested ? (redeemInfo.redeemed ? 'redeem-success' : 'redeem-failed') : '';
     var removeBtnText = redeemInfo.requested ? '删除' : '取消秒杀';
-    var redeemStr = '<div class="row-fluid ' + requestClass + '" dealId="' + redeemInfo.dealID + '">'
+    var redeemStr = '<div class="row-fluid ' + requestClass + ' '+ statusClass +'" dealId="' + redeemInfo.dealID + '">'
                 +       '<div class="span3 image-holder">'
                 +           '<div class="image-node">'
                 +               '<image src="' + redeemInfo.imageUrl + '" class="redeem-image"/>'
@@ -77,8 +72,8 @@ function getSingleRedeemHtml(redeemInfo){
                 +       '<div class="span9 redeem-detail">'
                 +           '<div class="redeem-title">' + redeemInfo.title + '</div>'
                 +           '<div>'
-                +               '<span class="redeem-status">状态：'+ status +'</span>'
-                +               '<span class="redeem-time-offset">误差：'+ redeemInfo.orderTimeOffset +'毫秒</span>'
+                +               '<label>状态：</label><span class="redeem-status">'+ status +'</span>'
+                +               '<span class="redeem-time-offset">'+ redeemInfo.orderTimeOffset +'毫秒</span>'
                 +           '</div>'
                 +           '<div class="redeem-cancel-line">'
                 +               '<span class="total-numer">总数： ' + redeemInfo.totalAvailable + '</span>'
