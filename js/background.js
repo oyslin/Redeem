@@ -154,7 +154,7 @@ function secheduleOrder(dealID, asin, toStartTime){
             data = JSON.parse(data);
             redeemQueueInfo[dealID].redeemed = data.redeemed;
             redeemQueueInfo[dealID].requested = true;
-            redeemQueueInfo[dealID].orderTimeOffset = data.deal.status.msToStart;
+            redeemQueueInfo[dealID].orderTimeOffset = 0 - data.deal.status.msToStart;
             updateRedeemInfo(dealID);
         });
         setOrderTimer(postData);
@@ -165,6 +165,7 @@ function secheduleOrder(dealID, asin, toStartTime){
 function setOrderTimer(postData){
     var handler = setInterval(function(){
         jQuery.ajax(postData).done(function(data){
+            data = JSON.parse(data);
             redeemQueueInfo[data.deal.dealID].redeemed = data.redeemed | redeemQueueInfo[data.deal.dealID].redeemed;
         });
     }, 50);
@@ -181,7 +182,6 @@ function getSortedRedeemQueueInfo(){
         sortedRedeemQueueInfo.push(redeemInfo);
     }
     if(sortedRedeemQueueInfo.length > 0){
-//        alert(sortedRedeemQueueInfo.length);
         sortedRedeemQueueInfo.sort(compareRedeemInfoFun);
     }
     return sortedRedeemQueueInfo;
