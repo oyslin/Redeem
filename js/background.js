@@ -102,8 +102,8 @@ function getDealInfo(dealIDs){
                         };
 
                         asin = dealInfo.parentAsin ? dealInfo.parentAsin : asins[0].asin;
-//                        redeemInfo.timeoutHandler = secheduleOrder(dealID, asin, msToStart);
-                        redeemInfo.timeoutHandler = secheduleOrder(dealID, asin, 2000);
+                        redeemInfo.timeoutHandler = secheduleOrder(dealID, asin, msToStart);
+//                        redeemInfo.timeoutHandler = secheduleOrder(dealID, asin, 2000);
                         redeemInfo.title = dealInfo.detail.title ? dealInfo.detail.title : dealInfo.teaser.teaser;
                         redeemInfo.imageUrl = dealInfo.detail.imageAsin ? dealInfo.detail.imageAsin : 'images/default.gif';
                         redeemInfo.hasDetail = true;
