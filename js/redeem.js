@@ -73,7 +73,7 @@ function getSingleRedeemHtml(redeemInfo){
                 +           '<div class="redeem-title">' + redeemInfo.title + '</div>'
                 +           '<div>'
                 +               '<label>状态：</label><span class="redeem-status">'+ status +'</span>'
-                +               '<span class="redeem-time-offset">'+ redeemInfo.orderTimeOffset +'毫秒</span>'
+                +               '<span class="redeem-time-offset">延迟：'+ redeemInfo.orderTimeOffset +'毫秒</span>'
                 +           '</div>'
                 +           '<div class="redeem-cancel-line">'
                 +               '<span class="total-numer">总数： ' + redeemInfo.totalAvailable + '</span>'

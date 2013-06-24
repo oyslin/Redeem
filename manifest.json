@@ -1,7 +1,7 @@
 {
     "name": "Z秒杀",
     "manifest_version": 2,
-    "version": "0.1",
+    "version": "0.2",
     "description": "亚马逊秒杀插件，帮助你快速秒杀商品",
     "icons": {
         "16": "images/order_16.png",
@@ -9,7 +9,6 @@
         "128": "images/order_128.png"
     },
     "background": {
-//        "scripts": ["background.html"],
         "page": "background.html"
     },
     "content_scripts": [
